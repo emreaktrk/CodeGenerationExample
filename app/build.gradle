@@ -28,3 +28,16 @@ dependencies {
     implementation project(':repo-annotations')
     annotationProcessor project(':repo-processors')
 }
+
+task copyRepo(type: Copy) {
+    from("$buildDir/generated/source/apt/debug") {
+        include '**/*Repository.java'
+    }
+    into 'src/main/java'
+    filter { line -> line.replaceAll('Repository', 'Repo') }
+    rename { String fileName ->
+        fileName.replace("Repository", "Repo")
+    }
+}
+
+
