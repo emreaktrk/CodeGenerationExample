@@ -41,3 +41,11 @@ task copyRepo(type: Copy) {
 }
 
 
+task createFile(type: Copy) {
+    File temp = new File("$buildDir/generated/source/apt/debug/emre.txt")
+    temp.createNewFile()
+    temp.text = "Selam"
+    println(temp.absolutePath)
+}
+
+
